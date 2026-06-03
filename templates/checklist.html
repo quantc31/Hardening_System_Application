@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary">📝 Checklist Hệ thống mới</h4>
+        <select class="form-select w-auto fw-bold" onchange="window.location.href='/checklist?type='+this.value">
+            {% for t in types %}
+                <option value="{{ t }}" {% if t == selected_type %}selected{% endif %}>{{ t }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="card-body">
+        <form action="/export_checklist" method="POST">
+            <input type="hidden" name="device_type" value="{{ selected_type }}">
+            
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <label class="form-label">Hostname</label>
+                    <input type="text" class="form-control" name="hostname" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">IP Address</label>
+                    <input type="text" class="form-control" name="ip_address" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Ngày kiểm tra</label>
+                    <input type="date" class="form-control" name="check_date" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Người kiểm tra</label>
+                    <input type="text" class="form-control" name="inspector" required>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-hover table-hardened text-sm">
+                <thead>
+                    <tr>
+                        <th width="3%">STT</th>
+                        <th width="15%">Danh mục</th>
+                        <th width="25%">Mục kiểm tra</th>
+                        <th width="30%">Command / Phương pháp</th>
+                        <th width="12%">Kết quả</th>
+                        <th width="15%">Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cat in data %}
+                        {% for item in cat['items'] %}
+                        <tr>
+                            <td class="text-center">{{ item.stt }}</td>
+
+                            {% if loop.first %}
+                                <td rowspan="{{ cat['items']|length }}" class="fw-bold bg-light">{{ cat.danh_muc }}</td>
+                            {% endif %}
+                            
+                            <td>{{ item.muc }}</td>
+                            <td><code class="text-dark">{{ item.cmd }}</code></td>
+                            <td>
+                                <select class="form-select form-select-sm na" name="result_{{ item.row_idx }}" 
+                                        onchange="this.className='form-select form-select-sm ' + this.value.toLowerCase().replace('/', '')">
+                                    <option value="N/A" class="na">N/A</option>
+                                    <option value="PASS" class="pass">PASS</option>
+                                    <option value="FAIL" class="fail">FAIL</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control form-control-sm" name="note_{{ item.row_idx }}">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="text-end mt-3">
+                <button type="submit" class="btn btn-success btn-lg px-5">💾 Xuất File Excel</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
