@@ -14,8 +14,8 @@ CHECKLIST_DATA = {
         ]},
         {"danh_muc": "2. SSH Hardening", "items": [
             {"stt": "6", "muc": "PermitRootLogin = no", "cmd": "grep PermitRootLogin /etc/ssh/sshd_config", "row_idx": 11},
-            {"stt": "7", "muc": "MaxAuthTries = 5", "cmd": "grep MaxAuthTries /etc/ssh/sshd_config", "row_idx": 12},
-            {"stt": "8", "muc": "LoginGraceTime = 20", "cmd": "grep LoginGraceTime /etc/ssh/sshd_config", "row_idx": 13},
+            {"stt": "7", "muc": "MaxAuthTries = 4", "cmd": "grep MaxAuthTries /etc/ssh/sshd_config", "row_idx": 12},
+            {"stt": "8", "muc": "LoginGraceTime = 60", "cmd": "grep LoginGraceTime /etc/ssh/sshd_config", "row_idx": 13},
             {"stt": "9", "muc": "X11Forwarding = no", "cmd": "grep X11Forwarding /etc/ssh/sshd_config", "row_idx": 14},
             {"stt": "10", "muc": "AllowAgentForwarding = no", "cmd": "grep AllowAgentForwarding /etc/ssh/sshd_config", "row_idx": 15},
             {"stt": "11", "muc": "MaxSessions = 3", "cmd": "grep MaxSessions /etc/ssh/sshd_config", "row_idx": 16},
@@ -313,8 +313,8 @@ AUDIT_DATA = {
     "Linux Ubuntu 24.04": [
         {"danh_muc": "1. SSH Hardening", "items": [
             {"stt": "1", "nguy_co": "Cao", "muc": "grep PermitRootLogin /etc/ssh/sshd_config", "expected": "no", "row_idx": 5},
-            {"stt": "2", "nguy_co": "Cao", "muc": "grep MaxAuthTries /etc/ssh/sshd_config", "expected": "5", "row_idx": 6},
-            {"stt": "3", "nguy_co": "Trung bình", "muc": "grep LoginGraceTime /etc/ssh/sshd_config", "expected": "20", "row_idx": 7},
+            {"stt": "2", "nguy_co": "Cao", "muc": "grep MaxAuthTries /etc/ssh/sshd_config", "expected": "4", "row_idx": 6},
+            {"stt": "3", "nguy_co": "Trung bình", "muc": "grep LoginGraceTime /etc/ssh/sshd_config", "expected": "60", "row_idx": 7},
             {"stt": "4", "nguy_co": "Trung bình", "muc": "grep X11Forwarding /etc/ssh/sshd_config", "expected": "no", "row_idx": 8},
             {"stt": "5", "nguy_co": "Trung bình", "muc": "grep MaxSessions /etc/ssh/sshd_config", "expected": "3", "row_idx": 9},
             {"stt": "6", "nguy_co": "Trung bình", "muc": "grep AllowAgentForwarding /etc/ssh/sshd_config", "expected": "no", "row_idx": 10},
@@ -333,7 +333,7 @@ AUDIT_DATA = {
             {"stt": "17", "nguy_co": "Trung bình", "muc": "grep pam_pwhistory /etc/pam.d/common-password", "expected": "remember=5", "row_idx": 22},
             {"stt": "18", "nguy_co": "Cao", "muc": "grep sha512 /etc/pam.d/common-password", "expected": "sha512", "row_idx": 23},
             {"stt": "19", "nguy_co": "Trung bình", "muc": "grep -E 'difok|maxrepeat|maxsequence|dictcheck' /etc/security/pwquality.conf", "expected": "difok=2, maxrepeat=3, maxsequence=3, dictcheck=1", "row_idx": 24},
-            {"stt": "20", "nguy_co": "Cao", "muc": "grep -E 'deny|unlock_time' /etc/security/faillock.conf", "expected": "deny=5, unlock_time=1800", "row_idx": 25},
+            {"stt": "20", "nguy_co": "Cao", "muc": "grep -E 'deny|unlock_time' /etc/security/faillock.conf", "expected": "deny=5, unlock_time=900", "row_idx": 25},
             {"stt": "21", "nguy_co": "Cao", "muc": "grep 'even_deny_root' /etc/security/faillock.conf", "expected": "even_deny_root (có dòng này)", "row_idx": 26},
         ]},
         {"danh_muc": "3. Xác thực RADIUS", "items": [
