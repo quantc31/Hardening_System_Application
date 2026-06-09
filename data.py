@@ -9,7 +9,7 @@ CHECKLIST_DATA = {
             {"stt": "1", "muc": "Cập nhật kernel", "cmd": "sudo apt update && sudo apt upgrade -y ( lưu ý: Override local changes to /etc/pam.d/common-*? [yes/no] no)", "row_idx": 5},
             {"stt": "2", "muc": "Kiểm tra hostname", "cmd": "hostname -f", "row_idx": 6},
             {"stt": "3", "muc": "Kiểm tra IP tĩnh", "cmd": "ip -br a", "row_idx": 7},
-            {"stt": "4", "muc": "Default Gateway và DNS được cấu hình chính xác.", "cmd": "ip route; nslookup google.com", "row_idx": 8},
+            {"stt": "4", "muc": "Default Gateway và DNS (10.31.100.30) được cấu hình chính xác.", "cmd": "ip route; nslookup google.com", "row_idx": 8},
             {"stt": "5", "muc": "Hostname đã được khai báo trong file /etc/hosts.", "cmd": "cat /etc/hosts", "row_idx": 9},
             {"stt": "6", "muc": "Hệ điều hành đã được cập nhật đầy đủ các package.", "cmd": "apt list --upgradable", "row_idx": 10},
             
